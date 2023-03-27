@@ -2,6 +2,7 @@ import { database } from "../../database/postgress";
 import { Task } from "../schema&&types/task";
 
 async function createTask(newTask: Task) {
+    console.log('newTask in repository :', newTask)
     
     const {rows: task} = await database.query(`
         INSERT INTO tasks (name, time, "userId")

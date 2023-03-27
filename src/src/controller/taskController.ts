@@ -4,6 +4,7 @@ import { taskService } from "../service/taskService";
 
 export async function postTask(req: Request, res: Response) {
     const task = req.body;
+    console.log('task in controller :', task)
 
     const newTask = await taskService.createTask(task)
 
@@ -11,9 +12,9 @@ export async function postTask(req: Request, res: Response) {
 }
 
 export async function getTask(req: Request, res: Response) {
-    const taskId = Number(req.params.id)
+    // const taskId = Number(req.params.id)
 
-    const task = await taskService.getTask(taskId)
+    // const task = await taskService.getTask(taskId)
     
-    return res.status(200).send(task)
+    return res.status(200).send('consegui')
 }
