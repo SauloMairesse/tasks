@@ -7,11 +7,15 @@ async function createTask(newTask: Task) {
 }
 
 async function getTask(id: number) {
-    const task = await taskRepository.getTaskById(id)
-    return task
+    return await taskRepository.getTaskById(id)
+}
+
+async function getUserTasks(id: number) {
+    return await taskRepository.getUserTasks(id)
 }
 
 export const taskService = {
     createTask,
-    getTask
+    getTask,
+    getUserTasks
 }
