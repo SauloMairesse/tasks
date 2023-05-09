@@ -26,8 +26,18 @@ async function getUserTasks(id: number){
     return tasks
 }
 
+async function putTaskTime(id: number){
+    const {rows: tasks } = await database.query(`
+        SELECT * FROM tasks
+        WHERE "userId" = $1
+    `, [id])
+
+    return tasks
+}
+
 export const taskRepository = {
     createTask,
     getTaskById,
-    getUserTasks
+    getUserTasks,
+    putTaskTime
 }

@@ -21,3 +21,10 @@ export async function getUserTask(req: Request, res: Response) {
     
     return res.status(200).send(tasks)
 }
+
+export async function putTaskTime(req: Request, res: Response) { 
+    const userId = Number(req.params.taskid)  
+    const tasks = await taskService.getUserTasks(userId)
+    
+    return res.status(200).send(tasks)
+}

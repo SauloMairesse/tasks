@@ -13,8 +13,14 @@ async function getUserTasks(id: number) {
     return await taskRepository.getUserTasks(id)
 }
 
+
+async function putTaskTime(id: number) {
+    return await taskRepository.putTaskTime(id)
+}
+
 export const taskService = {
     createTask,
     getTask,
-    getUserTasks
+    getUserTasks,
+    putTaskTime
 }

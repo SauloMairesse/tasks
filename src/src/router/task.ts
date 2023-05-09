@@ -7,3 +7,4 @@ export const taskRouter = Router()
 
 taskRouter.post('/newtask', schemaValidation(newTask), postTask)
 taskRouter.get('/task/:userid', getUserTask)
+taskRouter.put('/taks/time/:taskid', )
