@@ -1,5 +1,5 @@
 import { database } from "../../database/postgress";
-import { Task } from "../schema&&types/task";
+import { Task, UpdatingTask } from "../schema&&types/task";
 
 async function createTask(newTask: Task) {   
     return await database.query(`
@@ -26,11 +26,12 @@ async function getUserTasks(id: number){
     return tasks
 }
 
-async function putTaskTime(id: number){
+async function updateTaskTime(task: UpdatingTask){
     const {rows: tasks } = await database.query(`
-        SELECT * FROM tasks
-        WHERE "userId" = $1
-    `, [id])
+       UPDATE tasks 
+       SET time = $1
+       WHERE id = $2
+    `, [task.newTime, task.id])
 
     return tasks
 }
@@ -39,5 +40,5 @@ export const taskRepository = {
     createTask,
     getTaskById,
     getUserTasks,
-    putTaskTime
+    updateTaskTime
 }

@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { taskService } from "../service/taskService";
+import { updateTaskFormat } from "../schema&&types/task";
 
 export async function postTask(req: Request, res: Response) {
     const task = req.body;
@@ -23,8 +24,10 @@ export async function getUserTask(req: Request, res: Response) {
 }
 
 export async function putTaskTime(req: Request, res: Response) { 
-    const userId = Number(req.params.taskid)  
-    const tasks = await taskService.getUserTasks(userId)
+    const userId = Number(req.params.taskid)
+    const oldTask = req.body
+    console.log('body : ', oldTask)
+    const taskUpdate = await taskService.updateTask(oldTask)
     
-    return res.status(200).send(tasks)
+    return res.status(200).send(taskService)
 }

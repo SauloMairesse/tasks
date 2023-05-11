@@ -1,5 +1,5 @@
 import { taskRepository } from "../repository/taskRepository"
-import { Task } from "../schema&&types/task"
+import { Task, UpdatingTask } from "../schema&&types/task"
 
 async function createTask(newTask: Task) {
     return await taskRepository.createTask(newTask)
@@ -14,13 +14,13 @@ async function getUserTasks(id: number) {
 }
 
 
-async function putTaskTime(id: number) {
-    return await taskRepository.putTaskTime(id)
+async function updateTask(task: UpdatingTask) {
+    return await taskRepository.updateTaskTime(task)
 }
 
 export const taskService = {
     createTask,
     getTask,
     getUserTasks,
-    putTaskTime
+    updateTask
 }
