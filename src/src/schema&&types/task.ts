@@ -7,16 +7,13 @@ export const newTask = Joi.object({
 })
 
 export const updateTaskFormat = Joi.object({
-    id:     Joi.number()
-            .required(),
-    name:   Joi.string()
-            .required(),
+    id:     Joi.number().required(),
+    name:   Joi.string().required(),
     time:   Joi.string()
             .pattern(new RegExp(/^([0-9]{1,2})\:([0-9]{1,2})$/))
             .required(),
-    userId: Joi.number()
-            .integer()
-            .required(),
+    userId: Joi.number().integer().required(),
+    done: Joi.boolean().required(),
     newTime: Joi.string()
             .pattern(new RegExp(/^([0-9]{1,2})\:([0-9]{1,2})$/))
             .required()
@@ -27,6 +24,7 @@ export type UpdatingTask = {
     name:   string,
     time:   string,
     userId: number,
+    done: boolean,
     newTime: string
 }
 

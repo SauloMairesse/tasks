@@ -18,9 +18,14 @@ async function updateTask(task: UpdatingTask) {
     return await taskRepository.updateTaskTime(task)
 }
 
+async function toDoneTask(task: UpdatingTask) {
+    return await taskRepository.finishTask(task)
+}
+
 export const taskService = {
     createTask,
     getTask,
     getUserTasks,
-    updateTask
+    updateTask,
+    toDoneTask
 }

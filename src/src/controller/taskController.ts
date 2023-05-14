@@ -24,10 +24,15 @@ export async function getUserTask(req: Request, res: Response) {
 }
 
 export async function putTaskTime(req: Request, res: Response) { 
-    const userId = Number(req.params.taskid)
     const oldTask = req.body
-    console.log('body : ', oldTask)
     const taskUpdate = await taskService.updateTask(oldTask)
     
-    return res.status(200).send(taskService)
+    return res.status(200).send(taskUpdate)
+}
+
+export async function putDoneTask(req: Request, res: Response) { 
+    const updatedTask = req.body
+    const doneTask = await taskService.toDoneTask(updatedTask)
+    
+    return res.status(200).send(doneTask)
 }

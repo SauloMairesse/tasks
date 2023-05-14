@@ -20,8 +20,8 @@ async function getTaskById(id: number){
 async function getUserTasks(id: number){
     const {rows: tasks } = await database.query(`
         SELECT * FROM tasks
-        WHERE "userId" = $1
-    `, [id])
+        WHERE "userId" = $1 AND "done" = $2
+    `, [id, false])
 
     return tasks
 }
@@ -36,9 +36,20 @@ async function updateTaskTime(task: UpdatingTask){
     return tasks
 }
 
+async function finishTask(task: UpdatingTask){
+    const {rows: tasks } = await database.query(`
+       UPDATE tasks 
+       SET done = $1
+       WHERE id = $2
+    `, [task.done, task.id])
+
+    return tasks
+}
+
 export const taskRepository = {
     createTask,
     getTaskById,
     getUserTasks,
-    updateTaskTime
+    updateTaskTime,
+    finishTask
 }
